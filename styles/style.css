@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Pixelify+Sans:wght@400..700&display=swap');
-
+@import url(reset.css);
 :root{
     --page-background: #181818; 
     --component-background: #1e1e1e;
@@ -12,10 +12,6 @@
     --font-secondary: "Pixelify Sans", sans-serif;
 }
 
-/* RESET STYLES */
-    p{
-        margin: 0;
-    }
 
  /*PROJECT STYLES*/
 
@@ -46,11 +42,6 @@ body{
     font-size: 14px; 
 }
 
-.chatbot > p {
-    font-family: inherit; 
-    font-size: inherit; 
-}
-
 .gradient-border {
   --borderWidth: 3px;
   background: var(--component-background);
@@ -75,6 +66,7 @@ body{
 h1{
     font-family: var(--font-secondary); 
     font-size: 16px; 
+    margin-bottom: 4px; 
 }
 
 .high-priority{
@@ -118,6 +110,10 @@ h1{
     background-color: var(--component-background);
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     padding: 14px; 
+}
+
+.todo-list{
+  margin-top: 12px; 
 }
 
 .xp-bar { 
