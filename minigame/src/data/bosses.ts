@@ -1,5 +1,5 @@
-import { Boss } from '../types/Boss';
-import { SpellType } from '../types/SpellType';
+import { Boss } from '../types/Boss.js';
+import { SpellType } from '../types/SpellType.js';
 
 export const bosses: Boss[] = [
   {

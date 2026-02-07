@@ -1,4 +1,4 @@
-import { SpellType } from "./SpellType";
+import { SpellType } from "./SpellType.js";
 
 export interface Card {
     id: string;

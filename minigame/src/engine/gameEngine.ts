@@ -1,11 +1,15 @@
-import { GameState } from '../types/GameState';
-import { Card } from '../types/Card';
-import { Boss } from '../types/Boss';
-import { calculateDamage } from './combat';
+import { GameState } from '../types/GameState.js';
+import { Card } from '../types/Card.js';
+import { Boss } from '../types/Boss.js';
+import { calculateDamage } from './combat.js';
 
+/**
+ * Starts a new game with the given boss and deck.
+ * Clones boss to avoid mutating the original, sets initial boss HP.
+ */
 export function startGame(boss: Boss, deck: Card[]): GameState {
   return {
-    boss: { ...boss }, // clone boss to avoid mutating original
+    boss: { ...boss, currentHP: boss.maxHP }, // initialize currentHP
     deck,
     hand: [...deck], // all cards start in hand
     turn: 1,
@@ -13,8 +17,12 @@ export function startGame(boss: Boss, deck: Card[]): GameState {
   };
 }
 
+/**
+ * Plays a card by its ID (or name, depending on your Card type).
+ * Removes it from hand, applies damage to boss, updates turn and status.
+ */
 export function playCard(state: GameState, cardId: string): GameState {
-  const cardIndex = state.hand.findIndex((c) => c.id === cardId);
+  const cardIndex = state.hand.findIndex((c) => c.id === cardId || c.name === cardId);
   if (cardIndex === -1) return state; // card not found in hand
 
   const card = state.hand[cardIndex];
@@ -23,7 +31,7 @@ export function playCard(state: GameState, cardId: string): GameState {
   const newHand = [...state.hand];
   newHand.splice(cardIndex, 1);
 
-  // Apply damage
+  // Apply damage using your combat function
   const damage = calculateDamage(card, state.boss);
   const newBossHp = Math.max(0, state.boss.currentHP - damage);
 
@@ -38,5 +46,5 @@ export function playCard(state: GameState, cardId: string): GameState {
     boss: { ...state.boss, currentHP: newBossHp },
     turn: state.turn + 1,
     status: newStatus,
-  }
+  };
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spell Deck Duel</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .cards { display: flex; gap: 10px; margin-bottom: 20px; }
+    .card { padding: 10px; border: 1px solid #000; cursor: pointer; }
+    .boss { margin-bottom: 20px; }
+    .status { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Spell Deck Duel</h1>
+
+  <div class="boss">
+    <div>Boss: <span id="boss-name"></span></div>
+    <div>HP: <span id="boss-hp"></span></div>
+  </div>
+
+  <h2>Your Hand (Click to Play)</h2>
+  <div class="cards" id="hand"></div>
+
+  <div class="status" id="status"></div>
+
+  <script src="src/main.js" type="module"></script>
+</body>
+</html>
