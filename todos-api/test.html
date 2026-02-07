@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch Data from Server</title>
+</head>
+<body>
+    <h1>Data from Server:</h1>
+    <div id="content">Loading...</div>
+    <script>
+      const serverUrl = 'http://localhost:8080/api/todos';
+        fetch(serverUrl)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('content').textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                document.getElementById('content').textContent = 'Error loading data.';
+            });
+
+    </script>
+</body>
+</html>
