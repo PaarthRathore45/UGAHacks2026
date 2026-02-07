@@ -1,5 +1,7 @@
 #  **UGAHacks Chatbot Project**
 
+---
+
 ## ** Team Members **
 - **Paarth Rathore**
 - **Youssef Gaballa**
@@ -10,14 +12,16 @@
 
 ## **Purpose of the Project**
 
----
-
 ## **Tools Utilized**
 - **Java** 
 - **Maven**
 - **Gemini API**
 - **TypeScript**
 - **NodeJS**
+- **TextScript**
+- **HTML**
+- **CSS**
+- **JavaScript**
 
 ## **Problems Encountered and Solutions**
 1. **Parsing Natural Language**
