@@ -1,5 +1,5 @@
-import { Card } from '../types/Card';
-import { Boss } from '../types/Boss';
+import { Card } from '../types/Card.js';
+import { Boss } from '../types/Boss.js';
 
 export function calculateDamage(card: Card, boss: Boss): number {
   let multiplier = 1;

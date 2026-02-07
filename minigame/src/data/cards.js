@@ -1,7 +1,5 @@
-import { Card } from "../types/Card.js";
 import { SpellType } from "../types/SpellType.js";
-
-export const cards: Card[] = [
+export const cards = [
     {
         id: 'c1',
         name: 'Fireball',
@@ -58,4 +56,4 @@ export const cards: Card[] = [
         power: 5,
         description: 'Blocks incoming damage, deals recoil damage.'
     }
-]
+];

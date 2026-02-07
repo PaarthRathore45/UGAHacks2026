@@ -1,4 +1,4 @@
-import { Card } from "../types/Card";
+import { Card } from "../types/Card.js";
 
 export function validateDeck(deck: Card[]): boolean {
     if (deck.length !== 5) return false;

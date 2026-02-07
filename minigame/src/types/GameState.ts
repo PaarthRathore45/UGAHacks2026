@@ -1,5 +1,5 @@
-import { Card } from "./Card";
-import { Boss } from "./Boss";
+import { Card } from "./Card.js";
+import { Boss } from "./Boss.js";
 
 export interface GameState{
     boss: Boss;
