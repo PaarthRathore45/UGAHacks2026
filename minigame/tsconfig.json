@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ESNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "lib": ["ES2016", "DOM"]   // ← Add ES2016 to get Array.includes
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
+}

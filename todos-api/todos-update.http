@@ -1,0 +1,58 @@
+### Update existing todo by changing all fields
+PUT http://localhost:8080/api/todos/1
+Content-Type: application/json
+
+{
+  "title": "Updated Todo",
+  "priority": "Medium",
+  "completed": true
+}
+
+### update todo that does not exist
+PUT http://localhost:8080/api/todos/999
+Content-Type: application/json
+
+{
+  "title": "Non-existing Todo",
+  "priority": "Low",
+  "completed": false
+}
+### update todo with title that already exists
+PUT http://localhost:8080/api/todos/2
+Content-Type: application/json
+
+{
+  "title": "Buy groceries"
+}
+
+### Update existing todo by changing priority
+PUT http://localhost:8080/api/todos/1
+Content-Type: application/json
+
+{
+  "priority": "Low"
+}
+
+### Update todo by changing completed status
+PUT http://localhost:8080/api/todos/1
+Content-Type: application/json
+
+{
+  "completed": true
+}
+
+### update todo with invalid completed value
+PUT http://localhost:8080/api/todos/1
+Content-Type: application/json
+
+{
+  "completed": "yes"
+}
+### update todo with invalid priority value
+PUT http://localhost:8080/api/todos/1
+Content-Type: application/json
+
+{
+  "priority": "Urgent"
+}
+###
