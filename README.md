@@ -27,6 +27,7 @@ The purpose of WishCraft is to make task organization more engaging and approach
 - **Git**
 - **GitHub**
 - **Visual Studio Code**
+- **Affinity Designer**
 
 ## **Problems Encountered and Solutions**
 
