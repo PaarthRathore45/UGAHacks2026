@@ -4,6 +4,5 @@
 
 bin
 obj
-dist
 build
 node_modules
