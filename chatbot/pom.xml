@@ -25,17 +25,34 @@
 
     <build>
         <sourceDirectory>${project.basedir}</sourceDirectory>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <mainClass>chatbot</mainClass> 
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <plugins>
+
+        <!-- Allows mvn exec:java -->
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.1.0</version>
+            <configuration>
+                <mainClass>chatbot</mainClass>
+            </configuration>
+        </plugin>
+
+        <!-- Adds main class to the JAR -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.3.0</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <mainClass>chatbot</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
 </project>
 
 

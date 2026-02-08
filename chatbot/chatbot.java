@@ -1,7 +1,9 @@
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 
 import com.google.genai.Client;
@@ -15,19 +17,23 @@ public class chatbot {
         "in short", "in a nutshell", "to put it simply", "to put it briefly", "to put it in a nutshell"
     ));
     public static void main(String[] args) {
+        Path inputPath = Paths.get("input.txt");
+        Path outputPath = Paths.get("output.txt");
+        System.out.println("Chatbot watching input.txt for new tasks...");
         System.out.println("AI To-Do Bot with Gemini AI");
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.println("\nEnter your tasks:");
-            String input = scanner.nextLine();
-            if (input.equalsIgnoreCase("exit")) break;
-
-            String tasks = generateTasks(input);
-            System.out.println("\nYour To-Do List:");
-            System.out.println(tasks);
+        try {
+            if (Files.exists(inputPath)) {
+                String input = Files.readString(inputPath).trim();
+                    if (!input.isEmpty()) {
+                        String output = generateTasks(input);    
+                        Files.writeString(outputPath, output);
+                        System.out.println(output);
+                        Files.writeString(inputPath, "");
+                    }
+            }
+        } catch (Exception e) {
+            System.out.println("Error processing input.txt: " + e.getMessage());
         }
-        scanner.close();
-        System.out.println("Goodbye!");
     }
 
     public static String generateTasks(String input) {
