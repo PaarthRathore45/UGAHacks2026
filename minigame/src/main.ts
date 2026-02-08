@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const bossContainer = document.querySelector(".boss")!;
     bossImgEl = document.createElement("img");
     bossImgEl.id = "boss-img";
-    bossImgEl.style.width = "400px";
-    bossImgEl.style.height = "400px";
+    bossImgEl.style.width = "1000px";
+    bossImgEl.style.height = "1000px";
     bossImgEl.style.display = "block";
-    bossImgEl.style.marginTop = "20px";
+    bossImgEl.style.marginTop = "10px";
     bossContainer.appendChild(bossImgEl);
   }
 
