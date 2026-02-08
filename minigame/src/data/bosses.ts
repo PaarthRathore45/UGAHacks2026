@@ -10,7 +10,7 @@ export const bosses: Boss[] = [
     currentHP: 25,
     weaknesses: [SpellType.WATER],
     resistances: [SpellType.FIRE],
-    image: "assets/activity.svg"
+    image: "../media/Fire Wizard.png"
   },
   {
     id: 'b2',
@@ -20,7 +20,7 @@ export const bosses: Boss[] = [
     currentHP: 35,
     weaknesses: [SpellType.FIRE],
     resistances: [SpellType.EARTH],
-    image: "assets/activity.svg"
+    image: "../media/Earth Wizard.png"
   },
   {
     id: 'b3',
@@ -30,7 +30,7 @@ export const bosses: Boss[] = [
     currentHP: 45,
     weaknesses: [SpellType.EARTH],
     resistances: [SpellType.AIR],
-    image: "assets/activity.svg"
+    image: "../media/Air Wizard.png"
   },
   {
     id: 'b4',
@@ -40,7 +40,7 @@ export const bosses: Boss[] = [
     currentHP: 50,
     weaknesses: [SpellType.AIR],
     resistances: [SpellType.WATER],
-    image: "assets/activity.svg"
+    image: "../media/Water Wizard.png"
   },
   {
     id: 'b5',
@@ -50,6 +50,6 @@ export const bosses: Boss[] = [
     currentHP: 60,
     weaknesses: [SpellType.FIRE, SpellType.AIR],
     resistances: [SpellType.WATER, SpellType.EARTH],
-    image: "assets/activity.svg"
+    image: "../media/Fire Wizard.png"
   },
 ];

@@ -1,5 +1,5 @@
 const url = "http://localhost:8080/api/todos"
-let todos = {};
+let todos = [];
 async function getAllTodos() {
     try {
         const response = await fetch(url)
