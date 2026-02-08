@@ -15,47 +15,47 @@ public class chatbot {
         "in short", "in a nutshell", "to put it simply", "to put it briefly", "to put it in a nutshell"
     ));
     public static void main(String[] args) {
-        Client client = new Client();
-        try{
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("AI To-Do Bot with Gemini AI");
-            System.out.println("Type a paragraph of tasks. Type 'exit' to quit.");
-            while(true){
-                System.out.println("\nEnter your tasks:");
-                String input = scanner.nextLine();
-                if (input.equalsIgnoreCase("exit")) break;
-                //GenAI to create task list
-                GenerateContentResponse response =
-                    client.models.generateContent(
-                    "gemini-3-flash-preview",
-                    "Extract a list of tasks from this paragraph and order them by priority (most urgent or important first):\n"
-                    + input 
-                    +"\nRemove any filler words and only return the tasks as a clean numbered list.",
-                    null
-                    );
-                String aiOutput = response.text();
-                System.out.println("\nRaw AI output:");
-                System.out.println(aiOutput);
+        System.out.println("AI To-Do Bot with Gemini AI");
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("\nEnter your tasks:");
+            String input = scanner.nextLine();
+            if (input.equalsIgnoreCase("exit")) break;
 
-                String[] rawTasks = aiOutput.split("[\\n,]");
-                ArrayList<String> todoList = new ArrayList<>();
-                for (String task : rawTasks) {
-                    String cleaned = cleanTask(task, fillerWords);
-                    if (!cleaned.isEmpty()) {
-                        todoList.add(capitalize(cleaned));
-                    }
-                }
-                System.out.println("\nYour To-Do List:");
-                for (int i = 0; i < todoList.size(); i++) {
-                    System.out.println((i + 1) + ". " + todoList.get(i));
-                }   
-            }
-            scanner.close();
-
-        }   finally {
-                client.close();
-            }
+            String tasks = generateTasks(input);
+            System.out.println("\nYour To-Do List:");
+            System.out.println(tasks);
+        }
+        scanner.close();
         System.out.println("Goodbye!");
+    }
+
+    public static String generateTasks(String input) {
+        Client client = new Client();
+        try {
+            GenerateContentResponse response =
+                client.models.generateContent(
+                "gemini-3-flash-preview",
+                "Extract a list of tasks from this paragraph and order them by priority (most urgent or important first):\n"
+                + input 
+                +"\nRemove any filler words and only return the tasks as a clean numbered list.",
+                null
+                );
+            String aiOutput = response.text();
+            String[] rawTasks = aiOutput.split("[\\n,]");
+            ArrayList<String> todoList = new ArrayList<>();
+            for (String task : rawTasks) {
+                String cleaned = cleanTask(task, fillerWords);
+                if (!cleaned.isEmpty()) todoList.add(capitalize(cleaned));
+            }
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < todoList.size(); i++) {
+                result.append((i + 1)).append(". ").append(todoList.get(i)).append("\n");
+            }
+            return result.toString();
+        } finally {
+            client.close();
+        }   
     }
 
     //Method to capitalize the first letter of a task.
@@ -78,4 +78,4 @@ public class chatbot {
         result = result.replaceFirst("^\\d+\\.\\s*", "");
         return result;
     }
-}   
+} 
