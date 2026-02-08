@@ -42,6 +42,12 @@ body{
     font-size: 14px; 
 }
 
+.checkbox{
+    width: 14px; 
+    height: 14px;
+    accent-color: var(--green);
+    cursor: pointer; 
+}
 .gradient-border {
   --borderWidth: 3px;
   background: var(--component-background);
