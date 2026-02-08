@@ -14,13 +14,13 @@ getAllTodos()
       todosLow = todos.filter((todo) => todo.priority == "Low");
       console.log(todosHigh, todosMed, todosLow);
       todosHigh.forEach((todo) => {
-        addTodos(todosMed[0], highList);
+        addTodos(todosHigh[0], highList);
       });
       todosMed.forEach((todo) => {
         addTodos(todosMed[0], medList);
       })
       todosLow.forEach((todo) => {
-        addTodos(todosMed[0], lowList);
+        addTodos(todosLow[0], lowList);
       });
 
     })
