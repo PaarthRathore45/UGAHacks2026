@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./styles/style.css">
     <script src="./scripts/script.js" async></script>
     <script src="./scripts/todo-api.js" defer></script>
-    <script src="./scripts/main.js" defer></script>
+    <script src="./main.js" defer></script>
     <title>Create Your Magic</title>
 </head>
 <body>
@@ -17,13 +17,13 @@
             <div class="todo-box">
                 <h1 class="high-priority">Priority: HIGH</h1>
                 <div class="separator"></div>
-                <ul class="todo-list">
-                    <li>
+                <ul class="todo-list" id="list-high">
+                    <!-- <li>
                         <input class="checkbox" type="checkbox" id="1" name="high-priority-todos"/>
                         <label for="1"> Todo #1</label>
                         <button class="btn">Edit</button>
                         <button class="btn">Delete</button>
-                    </li>
+                    </li> -->
                 </ul>
 
                 <button class="btn add-todo">Add</button>
@@ -33,6 +33,11 @@
             <div class="todo-box">
                 <h1 class="mid-priority">Priority: MID</h1>
                 <div class="separator"></div>
+                <ul class="todo-list" id="list-med">
+
+                </ul>
+                <button class="btn add-todo">Add</button>
+
             </div>
 
             <!-- Low Priority Todo Container -->
@@ -40,6 +45,11 @@
             <div class="todo-box">
                 <h1 class="low-priority">Priority: LOW</h1>
                 <div class="separator"></div>
+                <ul class="todo-list" id="list-low">
+
+                </ul>
+                <button class="btn add-todo">Add</button>
+
             </div>
         </div>
 
