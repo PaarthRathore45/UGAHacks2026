@@ -27,8 +27,8 @@ export const cards: Card[] = [
         id: 'c4',
         name: 'Healing Rain',
         type: SpellType.WATER,
-        power: 0,
-        description: 'Blocks incoming damage. Heals 5 HP.'
+        power: 5,
+        description: 'Blocks incoming damage, deals recoil damage.'
     },
     {
         id: 'c5',

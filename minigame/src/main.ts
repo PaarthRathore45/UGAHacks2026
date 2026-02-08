@@ -11,73 +11,58 @@ document.addEventListener("DOMContentLoaded", () => {
   const handEl = document.getElementById("hand")!;
   const statusEl = document.getElementById("status")!;
 
+  // Boss image element
+  let bossImgEl = document.getElementById("boss-img") as HTMLImageElement;
+  if (!bossImgEl) {
+    const bossContainer = document.querySelector(".boss")!;
+    bossImgEl = document.createElement("img");
+    bossImgEl.id = "boss-img";
+    bossImgEl.style.width = "400px";
+    bossImgEl.style.height = "400px";
+    bossImgEl.style.display = "block";
+    bossImgEl.style.marginTop = "20px";
+    bossContainer.appendChild(bossImgEl);
+  }
+
+  // Select the boss
   const boss: Boss = bosses[2];
-  const selectedDeck: Card[] = [];
-  const selectedCardsSet = new Set<string>();
-  const selectedCardDivs: HTMLElement[] = []; // keep DOM references
-  let game: GameState | null = null;
+
+  // Start the game immediately
+  let game: GameState = startGame(boss, cards); // pass all cards as available
   let playedCount = 0;
 
-  // Render all cards for selection
-  cards.forEach((card: Card) => {
+  // Show boss info
+  bossNameEl.textContent = game.boss.name;
+  bossHpEl.textContent = game.boss.currentHP.toString();
+  bossImgEl.src = game.boss.image;
+  statusEl.textContent = `⚡ Boss appears! Click a card to attack!`;
+
+  // Render all cards for battle
+  cards.forEach((card: Card, index: number) => {
     const cardDiv = document.createElement("div");
-    cardDiv.className = "card";
-    cardDiv.textContent = `${card.name} (${card.type})`;
+    cardDiv.className = `card ${card.type.toLowerCase()}`;
+    cardDiv.textContent = `${card.name} (${card.type}) (${card.power})`;
 
-    // Phase 1: Selection
-    cardDiv.addEventListener("click", function selectCard() {
-      if (selectedCardsSet.has(card.name)) {
-        statusEl.textContent = `❌ Already selected ${card.name}`;
-        return;
-      }
-      if (selectedDeck.length >= 5) {
-        statusEl.textContent = `⚠️ You can only select 5 cards`;
-        return;
-      }
+    // Card click handler
+    cardDiv.addEventListener("click", () => {
+      if (playedCount >= 5) return; // limit to 5 plays
+      if (cardDiv.style.pointerEvents === "none") return; // already used
 
-      selectedDeck.push(card);
-      selectedCardsSet.add(card.name);
-      selectedCardDivs.push(cardDiv); // save reference for battle
+      game = playCard(game, card.name);
+      playedCount++;
 
-      cardDiv.style.opacity = "0.5"; // selection effect
-      cardDiv.style.pointerEvents = "none"; 
-      statusEl.textContent = `🪄 Selected ${card.name} (${selectedDeck.length}/5)`;
+      // Update boss HP
+      bossHpEl.textContent = game.boss.currentHP.toString();
+      statusEl.textContent = `✨ Played ${card.name}! Boss HP: ${game.boss.currentHP}`;
 
-      // Start battle once 5 cards are selected
-      if (selectedDeck.length === 5 && !game) {
-        game = startGame(boss, selectedDeck);
+      // Disable the card after use
+      cardDiv.classList.add("disabled");
 
-        bossNameEl.textContent = game.boss.name;
-        bossHpEl.textContent = game.boss.currentHP.toString(); // adjust to your engine
-
-        statusEl.textContent = `⚡ Deck ready! Click your cards to attack!`;
-
-        // Phase 2: Battle - re-enable the selected cards
-        selectedCardDivs.forEach((cDiv, index) => {
-          cDiv.style.opacity = "1";
-          cDiv.style.pointerEvents = "auto";
-
-          // Battle click handler
-          cDiv.addEventListener("click", function playCardHandler() {
-            if (!game) return;
-            const cardToPlay = selectedDeck[index];
-            console.log("Before:", game.boss.currentHP);
-            game = playCard(game!, cardToPlay.name);
-            playedCount++;
-            console.log("After:", game.boss.currentHP);
-            bossHpEl.textContent = game.boss.currentHP.toString();
-            statusEl.textContent = `✨ Played ${cardToPlay.name}! Boss HP: ${game.boss.currentHP}`;
-
-            cDiv.style.opacity = "0.5";
-            cDiv.style.pointerEvents = "none";
-
-            if (game.boss.currentHP <= 0) {
-              statusEl.textContent = `🏆 Boss defeated!`;
-            } else if (playedCount >= 5) {
-              statusEl.textContent = `⚡ All cards played!`;
-            }
-          }, { once: true }); // ensures each card can be played only once
-        });
+      // Check win/lose
+      if (game.boss.currentHP <= 0) {
+        statusEl.textContent = `🏆 Boss defeated!`;
+      } else if (playedCount >= 5) {
+        statusEl.textContent = `⚡ All cards played! Boss HP: ${game.boss.currentHP}`;
       }
     });
 
