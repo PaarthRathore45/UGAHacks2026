@@ -12,8 +12,10 @@
 
 ## **Purpose of the Project**
 
+The purpose of WishCraft is to make task organization more engaging and approachable by combining productivity with light gamification. By turning real-life goals into “wishes” and rewarding progress through a boss-battle mini-game, the project aims to motivate users to stay organized and consistent. The addition of an AI chatbot further reduces friction by helping users break down and organize tasks naturally, making productivity feel less overwhelming and more interactive.
+
 ## **Tools Utilized**
-- **Java** 
+- **Java**
 - **Maven**
 - **Gemini API**
 - **TypeScript**
@@ -22,6 +24,9 @@
 - **HTML**
 - **CSS**
 - **JavaScript**
+- **Git**
+- **GitHub**
+- **Visual Studio Code**
 
 ## **Problems Encountered and Solutions**
 1. **Parsing Natural Language**
