@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const bossHpEl = document.getElementById("boss-hp")!;
   const handEl = document.getElementById("hand")!;
   const statusEl = document.getElementById("status")!;
-
+  const endMessageEl = document.getElementById("endMessage")!;
   // Boss image element
   let bossImgEl = document.getElementById("boss-img") as HTMLImageElement;
   if (!bossImgEl) {
@@ -23,6 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
     bossImgEl.style.marginTop = "20px";
     bossContainer.appendChild(bossImgEl);
   }
+
+  // showEndMessage 
+
+  function showEndMessage(win: boolean) {
+    endMessageEl.classList.remove("hidden");
+    endMessageEl.classList.add(win ? "win" : "lose");
+    endMessageEl.textContent = win ? "You Win! :)" : "You Lose! :(";
+    handEl.style.pointerEvents = "none";
+}
 
   // Select the boss
   const boss: Boss = bosses[2];
@@ -59,10 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
       cardDiv.classList.add("disabled");
 
       // Check win/lose
+      // Check win/lose
       if (game.boss.currentHP <= 0) {
-        statusEl.textContent = `🏆 Boss defeated!`;
-      } else if (playedCount >= 5) {
-        statusEl.textContent = `⚡ All cards played! Boss HP: ${game.boss.currentHP}`;
+        showEndMessage(true);
+      } 
+      else if (playedCount >= 5) {
+        showEndMessage(false);
       }
     });
 
