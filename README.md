@@ -29,15 +29,32 @@ The purpose of WishCraft is to make task organization more engaging and approach
 - **Visual Studio Code**
 
 ## **Problems Encountered and Solutions**
+
 1. **Parsing Natural Language**
-   - **Problem:** Extracting individual tasks from user paragraphs and removing "filler" words.
-   - **Solution:** Used the **Gemini AI API** to parse tasks and rank them by priority, combined with Java logic to clean tasks efficeiently.
+   - **Problem:** Extracting individual tasks from user-written paragraphs while removing filler words and maintaining task clarity.
+   - **Solution:** Used the **Gemini AI API** to parse tasks and rank them by priority, then applied Java-based logic to clean and format tasks efficiently.
 
 2. **Maven Dependency Issues**
-   - **Problem:** Resolving `ClassNotFound` and import errors for the Gemini API.  
-   - **Solution:** Correctly configured `pom.xml` with the **Gemini dependency** and ensured the source files were in the proper directory (`src/main/java`).  
+   - **Problem:** Resolving `ClassNotFound` and import errors when integrating the Gemini API.
+   - **Solution:** Properly configured the `pom.xml` file with the correct **Gemini dependency** and ensured all source files were placed in the correct directory (`src/main/java`).
 
 3. **Handling API Key Safely**
-   - **Problem:** Keeping the API key safe and accessible for the application.
-   - **Solution:** Used environment variables (`GOOGLE_API_KEY`) instead of hardcoding the key.  
+   - **Problem:** Keeping the Gemini API key secure while allowing access during development.
+   - **Solution:** Used environment variables (`GOOGLE_API_KEY`) instead of hardcoding sensitive credentials.
+
+4. **Lack of Game Development Experience**
+   - **Problem:** None of the team members had prior experience with game development.
+   - **Solution:** We researched core game logic concepts and successfully implemented a functional mini-game using **TypeScript**, learning game mechanics during development.
+
+5. **API Rate Limiting**
+   - **Problem:** Encountered rate-limit restrictions when testing the Gemini API.
+   - **Solution:** Reduced unnecessary requests and optimized testing workflows to stay within usage limits.
+
+6. **Integrating Multiple Components**
+   - **Problem:** Fully integrating the mini-game, main app, and AI chatbot within the hackathon timeframe was challenging.
+   - **Solution:** While full integration was not completed, we successfully integrated the **AI chatbot with the main UI**, ensuring a strong and usable core experience.
+
+## **Credits**
+
+- **Gemini API** — Used for natural language task parsing, prioritization, and AI-powered task organization.
 
