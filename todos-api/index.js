@@ -75,6 +75,8 @@ app.post('/api/todos', (req, res) => {
 app.put('/api/todos/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const { title, priority, completed } = req.body;
+  console.log("id for update: ", id)
+  console.log("completed:", completed)
   const todo = todos.find((t) => t.id === id);
   if (todo) {
     if (title) {

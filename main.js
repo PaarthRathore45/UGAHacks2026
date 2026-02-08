@@ -5,6 +5,7 @@ let todosLow = [];
 let highList = document.getElementById("list-high");
 let medList = document.getElementById("list-med");
 let lowList = document.getElementById("list-low");
+let xp = 0;
 
 getAllTodos()
     .then(data => {
@@ -14,13 +15,13 @@ getAllTodos()
       todosLow = todos.filter((todo) => todo.priority == "Low");
       console.log(todosHigh, todosMed, todosLow);
       todosHigh.forEach((todo) => {
-        addTodos(todosHigh[0], highList);
+        addTodos(todo, highList);
       });
       todosMed.forEach((todo) => {
-        addTodos(todosMed[0], medList);
+        addTodos(todo, medList);
       })
       todosLow.forEach((todo) => {
-        addTodos(todosLow[0], lowList);
+        addTodos(todo, lowList);
       });
 
     })
@@ -62,6 +63,30 @@ function addTodos(todos, listElement) {
   toggleButton.className = "checkbox";
   toggleButton.type = "checkbox";
   toggleButton.id = todos.id;
+  toggleButton.checked = todos.completed;
+  toggleButton.addEventListener("change", async (e) => {
+    
+    console.log(e.target)
+    let id = e.target.id;
+    console.log(id)
+    if (e.target.checked) {
+      let xpbar = document.getElementById("xp-bar");
+      xp += 25;
+      xpbar.style.width = xp + "%";
+      if (xp == 100) {
+        let p = document.getElementById("minigame-p")
+        let minigameButton = document.getElementById("minigame");
+        p.textContent = "Unlocked Level 1";
+        minigameButton.textContent = "level 1"
+        minigameButton.addEventListener("click", (e) => {
+           window.location.href="minigame/index.html"
+         })
+      }
+      await updateTodo(id, { completed: true })
+    } else {
+      await updateTodo(id, { completed: false })
+    }
+  });
   let label = document.createElement("label");
   label.for = todos.id;
   label.setAttribute("for", todos)
@@ -69,7 +94,29 @@ function addTodos(todos, listElement) {
   label.textContent = todos.title;
   let editButton = document.createElement("button")
   editButton.className = "btn edit"
-  editButton.textContent="Edit"
+  editButton.textContent = "Edit"
+  editButton.dataset.priority = todos.priority;
+  editButton.addEventListener("click", async (e) => {
+    let priority = e.target.dataset.priority;
+    let id = e.target.closest("li").id;
+    console.log("id: ", id)
+    console.log(priority);
+    if (priority == "High") {
+      e.target.closest("li").remove();
+      medList.appendChild(e.target.closest("li"));
+      await updateTodo(id, { priority: "Medium" })
+    } else if (priority == "Medium") {
+      e.target.closest("li").remove();
+      lowList.appendChild(e.target.closest("li"));
+      await updateTodo(id, { priority: "Low" });
+
+    } else if (priority == "Low") {
+      e.target.closest("li").remove();
+      highList.appendChild(e.target.closest('li'));
+      await updateTodo(id, { priority: "High" });
+
+    }
+  })
   let deleteButton = document.createElement("button");
   deleteButton.className = "btn delete";
   deleteButton.textContent = "Delete";
