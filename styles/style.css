@@ -147,6 +147,75 @@ h1{
   overflow: hidden;
 }
 
+.cards {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    padding: 20px;          /* more inner space */
+    width: 200px;           /* wider card */
+    min-height: 200px;      /* gives it card-like height */
+    border-width: 4px;      /* thicker border */
+    border-style: solid;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;        /* bigger text */
+    border-radius: 12px;    /* smoother corners */
+    user-select: none;
+    word-spacing: 2px;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+  /* Spell types */
+  .card.fire {
+    background-color: orange;
+    border-color: red;
+  }
+
+  .card.water {
+    background-color: cornflowerblue;
+    border-color: darkblue;
+  }
+
+  .card.earth {
+    background-color: green;
+    border-color: black;
+  }
+
+  .card.air {
+    background-color: darkgoldenrod;
+    border-color: white;
+  }
+
+  .card.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .boss {
+    font-size: 24px;
+    margin-bottom: 20px;
+    }
+
+#boss-name {
+  font-weight: bold;
+}
+
+#boss-hp {
+  font-weight: bold;
+  font-size: 28px;
+}
+#boss-name {
+  font-size: 30px;
+  color: darkred;
+}
+.game-title {
+  font-size: 4.5rem;
+}
+
 @keyframes animatedgradient {
 	0% {
 		background-position: 0% 50%;

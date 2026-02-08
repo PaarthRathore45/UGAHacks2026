@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
+<<<<<<< HEAD
     <script src="./scripts/script.js" async></script>
+=======
+    <script src="./scripts/todo-api.js" defer></script>
+    <script src="./main.js" defer></script>
+>>>>>>> refs/remotes/origin/main
     <title>Create Your Magic</title>
 </head>
 <body>
@@ -43,6 +48,11 @@
 
         <div class="chatbot gradient-border">
             <p>How are you going to make this day magical? </p>
+            <form id="taskForm">
+                <textarea id="taskInput" name="text" rows="3" cols="50" placeholder="Enter your tasks here"></textarea><br>
+                <button type="submit" class="btn">Generate To-Do List</button>
+            </form>
+            <div id="aiOutput"></div>
         </div>
 
         <div class="progress-container">
