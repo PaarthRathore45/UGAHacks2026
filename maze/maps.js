@@ -40,11 +40,11 @@ const map1 = [
 function drawMap() {
     ctx.fillStyle = "green";
 
-    for (i = 0; i < map1RowSize; i++) {
-        for (j = 0; j < map1ColSize; j++) {
-            if (map1[i*j] === 1) {
-                //ctx.fillRect((i % map1RowSize)*tileSize, (index/map1ColSize)*tileSize, tileSize, tileSize);
-                ctx.fillRect(i*tileSize, j*tileSize, tileSize, tileSize);
+    for (row = 0; row < map1RowSize; row++) {
+        for (col = 0; col < map1ColSize; col++) {
+            if (map1[row][col] === 1) { // Draw a wall
+                ctx.rect(col * tileSize, row * tileSize, tileSize, tileSize); // Use rect to define the wall area
+                ctx.fill(); // Fill the rectangle
             }
         }
     }

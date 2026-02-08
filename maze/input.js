@@ -1,4 +1,5 @@
 const keysPressed = [];
+
 function tryMove() {
     if (keysPressed.length === 0) {
         return;
@@ -40,7 +41,6 @@ function tryMove() {
                 break;
             }
         }
-
 
 
     })
