@@ -46,6 +46,7 @@ async function updateTodo(id, newTodo) {
 }
 
 async function deleteTodo(id) {
+  console.log("delete id", id)
     try {
         const response = await fetch(url + "/" + id, {
             method: "DELETE"
