@@ -10,4 +10,6 @@ export interface Boss {
 
     weaknesses: SpellType[];
     resistances: SpellType[];
+
+    image: string;
 }

@@ -6,7 +6,9 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "lib": ["ES2016", "DOM"]   // ← Add ES2016 to get Array.includes
+    "lib": ["ES2016", "DOM"],   // ← Add ES2016 to get Array.includes
+    "rootDir": "src",
+    "outDir": "dist"
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules"]
