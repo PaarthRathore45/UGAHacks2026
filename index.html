@@ -59,6 +59,27 @@
                 <textarea id="taskInput" name="text" rows="3" cols="50" placeholder="Enter your tasks here"></textarea><br>
                 <button type="submit" class="btn">Generate To-Do List</button>
             </form>
+            <script>
+                const form = document.getElementById("taskForm");
+                form.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    const text = document.getElementById("taskInput").value;
+                    if (!text) return;  
+                    try{
+                        const response = await fetch("/saveInput", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ text })
+                    });
+                    const msg = await response.text();
+                    console.log(msg);
+                    document.getElementById("aiOutput").innerText = "Tasks saved!";
+                } catch (err) {
+                    console.error("Error saving tasks:", err);
+                    document.getElementById("aiOutput").innerText = "Error saving tasks.";
+                }
+            });
+            </script>
             <div id="aiOutput"></div>
         </div>
 
