@@ -6,7 +6,7 @@ import { exec } from "child_process";
 const app = express();
 const PORT = 3000;
 
-app.use(express.static(path.resolve("../")));
+app.use(express.static(path.resolve("public")));
 app.use(express.json());
 
 app.post("/saveInput", (req, res) => {
