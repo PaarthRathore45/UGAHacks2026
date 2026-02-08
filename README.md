@@ -1,4 +1,4 @@
-#  **UGAHacks Chatbot Project**
+#  **UGAHacks WishCraft Project**
 
 ---
 
